@@ -1,5 +1,7 @@
 # delaunay-triangulation
 
+*Forked from [Bl4ckb0ne/delaunay-triangulation](https://github.com/Bl4ckb0ne/delaunay-triangulation)*
+
 [![Build Status](https://travis-ci.org/Bl4ckb0ne/delaunay-triangulation.svg?branch=master)](https://travis-ci.org/Bl4ckb0ne/delaunay-triangulation)
 
 ## Pseudo-code algorithm
