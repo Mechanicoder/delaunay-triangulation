@@ -146,26 +146,9 @@ void Test()
     }
     else if (test == 1)
     {
-        points = {
-            { 0.2, 0.2 }, { 0.2, 0.8 }, /*{ 0.8, 0.2 },*/{ 0.2, 1.2 }, { 0.8, 1.2 } };
+        points = { { 0.2, 0.2 }, { 0.2, 0.8 }, { 0.2, 1.2 }, { 0.8, 1.2 } };
         //points[1].x = 0.212151; // concave
         points[1].x = 0.212152; // convex
-
-        bool sort = true;
-        if (sort)
-        {
-            std::sort(points.begin(), points.end(), [](Pnt &p1, Pnt &p2)
-            {
-                if (p1.x == p2.x)
-                {
-                    return p1.y < p2.y;
-                }
-                else
-                {
-                    return p1.x < p2.x;
-                }
-            });
-        }
     }
     else if (test == 2)
     {
