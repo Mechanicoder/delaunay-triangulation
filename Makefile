@@ -15,13 +15,16 @@ LDFLAGS_TESTS =
 all: $(EXE)
 test: dir $(EXE_TESTS)
 
-$(EXE): dir main.o
-	$(CXX) -o $@ $(BUILD_DIR)/main.o $(CXXFLAGS)
+$(EXE): dir main.o idelaunay.o
+	$(CXX) -o $@ $^ $(CXXFLAGS)
 
 $(EXE_TESTS):tests.o
 	$(CXX) -o $@ $(BUILD_DIR)/tests.o $(CXXFLAGS_TESTS) $(LDFLAGS_TESTS)
 
 main.o:main.cpp
+	$(CXX) -o $(BUILD_DIR)/$@ -c $< $(CXXFLAGS)
+	
+idelaunay.o:idelaunay.cpp
 	$(CXX) -o $(BUILD_DIR)/$@ -c $< $(CXXFLAGS)
 
 tests.o:tests/tests.cpp
