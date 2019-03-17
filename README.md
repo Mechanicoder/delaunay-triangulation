@@ -2,7 +2,7 @@
 
 *Forked from [Bl4ckb0ne/delaunay-triangulation](https://github.com/Bl4ckb0ne/delaunay-triangulation)*
 
-[![Build Status](https://travis-ci.org/Bl4ckb0ne/delaunay-triangulation.svg?branch=master)](https://travis-ci.org/Bl4ckb0ne/delaunay-triangulation)
+[![Build Status](https://travis-ci.com/Mechanicoder/delaunay-triangulation.svg?branch=master)](https://travis-ci.com/Mechanicoder/delaunay-triangulation)
 
 ## Pseudo-code algorithm
 
@@ -36,10 +36,55 @@ function BowyerWatson (pointList)
 
 ## Sample
 
-![alt text](https://github.com/Bl4ckb0ne/delaunay-triangulation/blob/master/sample.png "Sample image (if you see this, then the image can't load or hasn't loaded yet)")
+![alt text](https://github.com/Mechanicoder/delaunay-triangulation/blob/master/pic/sample.png "Sample image (if you see this, then the image can't load or hasn't loaded yet)")
 
 
 From the [Wikipedia page of the algorithm](https://en.wikipedia.org/wiki/Bowyer%E2%80%93Watson_algorithm)
+
+###Other test cases
+*case 1*
+
+	points = { { 0.2, 0.2 }, { 0.2, 0.8 }, { 0.2, 1.2 }, { 0.8, 1.2 } };
+	//points[1].x = 0.212151; // concave
+	//points[1].x = 0.212152; // convex
+
+![case 1](https://github.com/Mechanicoder/delaunay-triangulation/blob/master/pics/test_case_convex-concave.png)
+
+*case 2*
+
+	// Generate self-intersection triangles if treat <onside> & <inside> as inside of <CircumCircle>
+    // And works fine if treat <onside>  as outside of <circumCircle>
+	points = {
+	    { 1.0000000000000000, 0.00000000000000000 },
+	    { 0.92387953251128674, 0.38268343236508978 },
+	    { 0.70710678118654757, 0.70710678118654757 },
+	    { 0.38268343236508984, 0.92387953251128674 },
+	    { 6.1232339957367660e-017, 1.0000000000000000 } };
+
+	// works fine after the following operation
+    //std::reverse(points.begin(), points.end());
+
+    // works fine for following points
+    //points = {
+    //    { 1, 0 }, { 0.92388, 0.382683 }, { 0.707107, 0.707107 },
+    //    { 0.382683, 0.92388 }, { 0, 1 } }; // fine
+
+![case 2](https://github.com/Mechanicoder/delaunay-triangulation/blob/master/pics/test_case_self_intersection.png)
+
+*case 3*
+
+	// Cannot generate any triangle with the following 4 points 
+    points = {
+        { 0.6025588633159, 0.2 },
+        { 0.5877586727660, 0.7 },
+        { 0.5899647831820, 0.5 },
+        { 0.6078756525049, 0 } };
+
+	// works fine after this point inserted
+    //points.emplace_back(Pnt(0.6025588633159, -0.2));
+
+![case 3](https://github.com/Mechanicoder/delaunay-triangulation/blob/master/pics/test_case_failed.png)
+
 
 ## Requirement
 
