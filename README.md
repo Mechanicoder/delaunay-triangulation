@@ -42,6 +42,7 @@ function BowyerWatson (pointList)
 From the [Wikipedia page of the algorithm](https://en.wikipedia.org/wiki/Bowyer%E2%80%93Watson_algorithm)
 
 ###Other test cases
+
 *case 1*
 
 	points = { { 0.2, 0.2 }, { 0.2, 0.8 }, { 0.2, 1.2 }, { 0.8, 1.2 } };

@@ -2,13 +2,12 @@
 #include <algorithm>
 #include <vector>
 
-#ifdef USE_VECTOR2
+#ifndef USE_OCCT_PNT
 #include "vector2.h"
 typedef Vector2<double> Pnt;
 #else
-#ifdef USE_OCCT_PNT
 #include <gp_Pnt2d.hxx>
-#endif
+
 class Pnt
 {
 public:

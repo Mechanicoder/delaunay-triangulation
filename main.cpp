@@ -16,7 +16,8 @@
 
 #define WIDTH 500
 #define HEIGHT 500
-#define SHRINK 300
+#define YMOVE 10
+#define SHRINK 400
 
 float RandomFloat(float a, float b) {
     const float random = ((float) rand()) / (float) RAND_MAX;
@@ -45,8 +46,8 @@ void Draw(const std::vector<std::pair<Pnt, Pnt>> &edges)
         const Pnt &p1 = e.first;
         const Pnt &p2 = e.second;
         lines.push_back({ {
-                sf::Vertex(sf::Vector2f((float)p1.x * SHRINK + 2, (float)p1.y * SHRINK + 2)),
-                sf::Vertex(sf::Vector2f((float)p2.x * SHRINK + 2, (float)p2.y * SHRINK + 2))
+                sf::Vertex(sf::Vector2f((float)p1.x * SHRINK + 2, (float)p1.y * SHRINK + 2 + YMOVE)),
+                sf::Vertex(sf::Vector2f((float)p2.x * SHRINK + 2, (float)p2.y * SHRINK + 2 + YMOVE))
             } });
     }
 
@@ -147,8 +148,8 @@ void Test()
     {
         points = {
             { 0.2, 0.2 }, { 0.2, 0.8 }, /*{ 0.8, 0.2 },*/{ 0.2, 1.2 }, { 0.8, 1.2 } };
-        points[1].x = 0.212151; // concave
-        //points[1].x = 0.212152; // convex
+        //points[1].x = 0.212151; // concave
+        points[1].x = 0.212152; // convex
 
         bool sort = true;
         if (sort)
@@ -168,7 +169,8 @@ void Test()
     }
     else if (test == 2)
     {
-        // Generate self-intersection triangles because of <Onside Inside Outside> judgement
+        // Generate self-intersection triangles if treat <onside> & <inside> as inside of <CircumCircle>
+        // And works fine if treat <onside>  as outside of <circumCircle>
         points = {
             { 1.0000000000000000, 0.00000000000000000 },
             { 0.92387953251128674, 0.38268343236508978 },
@@ -202,7 +204,7 @@ void Test()
             lines[i].first = points[i];
             lines[i].second = points[j];
         }
-        Draw(lines);
+        //Draw(lines);
     }
 
     TestIDelaunay(points);
